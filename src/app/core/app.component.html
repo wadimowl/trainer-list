@@ -1,0 +1,9 @@
+<header>
+  <app-toolbar></app-toolbar>
+</header>
+<main>
+  <app-navigation *appIsAuth [links]="routeData"></app-navigation>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</main>

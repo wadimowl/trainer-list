@@ -1,0 +1,17 @@
+<p *ngIf="userModerateFacade.lackOfUserForModeration$ | async">All users are moderated.</p>
+<div *ngIf="!(userModerateFacade.lackOfUserForModeration$ | async)">
+  <p class="info-text"><span>*</span> You are a moderator, who must validate content which were loaded by user.
+    Fields with <span class="attention-border">green border</span> require your approval.</p>
+  <button
+    class="width-full"
+    [disabled]="(userModerateFacade.sameUserRequested$ | async) || (userModerateFacade.selectIsUserLoading$ | async)"
+    mat-raised-button color="primary"
+    (click)="userModerateFacade.requestNextUserForModeration()"
+  >Next user</button>
+  <app-user-profile
+    [user]="(userModerateFacade.userOrEmpty$ | async)"
+    [load]="(userModerateFacade.selectIsUserLoading$ | async)!"
+    [fieldLoaders]="(userModerateFacade.whatPropertiesIsChanging$ | async)!"
+    (onChange)="changeUser($event)"
+  ></app-user-profile>
+</div>

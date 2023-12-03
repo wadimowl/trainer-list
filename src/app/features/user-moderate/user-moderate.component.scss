@@ -1,0 +1,15 @@
+@import '../../../styles/helper';
+@import '../../../styles/styles-theme';
+
+.info-text {
+  font-size: 1.3rem;
+  font-style: italic;
+  span:first-child {
+    color: $primary-color;
+  }
+}
+
+.attention-border {
+  @include attention-border;
+  padding: 0.4rem;
+}

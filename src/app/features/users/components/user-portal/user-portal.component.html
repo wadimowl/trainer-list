@@ -1,0 +1,6 @@
+<app-user-profile
+  [user]="(userFacade.userOrEmpty$ | async)"
+  [load]="(userFacade.selectIsUserLoading$ | async)!"
+  [fieldLoaders]="(userFacade.whatPropertiesIsChanging$ | async)!"
+  (onChange)="changeUser($event)"
+></app-user-profile>

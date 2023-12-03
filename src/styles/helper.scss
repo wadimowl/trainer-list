@@ -1,0 +1,11 @@
+@import './styles-theme';
+
+$border-width: 2px;
+
+.width-full {
+  width: 100%;
+}
+
+@mixin attention-border {
+  border: $border-width solid $primary-color;
+}

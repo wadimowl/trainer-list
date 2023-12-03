@@ -1,0 +1,14 @@
+<mat-card *ngIf="content">
+  <div class="image-block" (click)="showFullSize()">
+    <img mat-card-image alt="#" [class.attention-border]="content.approved === approveState.PENDING" src="{{content?.url}}">
+    <mat-icon *ngIf="icon" aria-hidden="false" aria-label="Example home icon" color="{{icon.color}}">{{icon.content}}</mat-icon>
+  </div>
+  <mat-card-actions fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center center">
+    <button mat-flat-button color="primary" aria-label="Approve" (click)="onClick()" [disabled]="approveState.ACCEPT === content.approved">
+      Approve
+    </button>
+    <button mat-flat-button color="warn" aria-label="Decline" (click)="onClick(false)" [disabled]="approveState.DECLINE === content.approved">
+      Decline
+    </button>
+  </mat-card-actions>
+</mat-card>

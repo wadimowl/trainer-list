@@ -1,0 +1,38 @@
+@use '../../../../styles/constants' as const;
+@use 'sass:math';
+@import '../../../../styles/helper';
+@import '../../../../styles/styles-theme';
+
+:host {
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.role-title {
+  cursor: pointer;
+}
+
+.capitalize {
+  text-transform: lowercase;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+mat-header-cell {
+  font-size: 1.2rem !important;
+}
+
+.mat-row {
+  border-right: 0.1rem solid transparent;
+  cursor: pointer;
+  mat-cell {
+    font-size: 1.4rem !important;
+    @media (min-width: math.div(const.$MOBILE_DIMENSION, 2)) and (max-width: 400px) {
+      font-size: 1.2rem !important;
+    }
+  }
+  &:hover {
+    border-right: 0.1rem solid $primary-color;
+  }
+}

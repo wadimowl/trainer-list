@@ -1,0 +1,17 @@
+mat-spinner {
+  position: absolute;
+  left: 0;
+}
+
+::ng-deep .mat-tab-links {
+  flex-wrap: wrap;
+
+  .mat-tab-link {
+    font-family: "San Francisco Regular", "Helvetica Neue", sans-serif;
+    width: 50%;
+
+    @media (max-width: 670px) {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+<app-spinner *ngIf="load"></app-spinner>
+<mat-card *ngIf="user">
+  <mat-card-content>
+    <form [formGroup]="form" fxLayout="row wrap" class="profile-fields" fxLayoutAlign="center center">
+      <div class="phone-container">
+        <div class="image-container" *ngIf="user?.avatar">
+          <img mat-card-avatar src="{{user.avatar}}" alt="#">
+        </div>
+        <mat-form-field appearance="standard" class="phone-container-field">
+          <mat-label>phone</mat-label>
+          <input formControlName="phone" matInput/>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="standard">
+        <mat-label>role</mat-label>
+        <input matInput formControlName="role" [value]="user.role" />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>name</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          [value]="user.name"
+          placeholder="Enter name here..."
+          [appInputLoader]="fieldLoaders.has('name')"
+        />
+        <mat-error app-control-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>email</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          [appInputLoader]="fieldLoaders.has('email')"
+          placeholder="Enter email here..."
+        />
+        <mat-error app-control-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>about</mat-label>
+        <textarea
+          matInput
+          formControlName="about"
+          [appInputLoader]="fieldLoaders.has('about')"
+          placeholder="Profile info"
+        ></textarea>
+        <mat-error app-control-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="fill"
+        [class.attention-border]="user.status === STATUSES.PENDING"
+      >
+        <mat-label>status</mat-label>
+        <mat-select
+          formControlName="status"
+          [appInputLoader]="fieldLoaders.has('status')"
+          name="status"
+        >
+          <mat-option *ngFor="let status of statusList; let i = index" [value]="i">
+            {{status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <div *ngIf="user && (user?.photos?.length || user?.certificates?.length)" class="photos">
+      <mat-accordion>
+        <mat-expansion-panel *ngIf="user?.photos?.length">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Photo.
+            </mat-panel-title>
+            <mat-panel-description>
+              Click to open.
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="row wrap" class="photo-container" fxLayoutAlign="space-evenly">
+            <app-approval-image
+              *ngFor="let photo of user?.photos; let i = index"
+              [content]="photo"
+              (onChange)="approveEvents.photos($event, i)"
+            ></app-approval-image>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="user?.certificates?.length">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Certificates
+            </mat-panel-title>
+            <mat-panel-description>
+              Click to open
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="row wrap" class="photo-container" fxLayoutAlign="space-evenly">
+            <app-approval-image
+              *ngFor="let certificate of user?.certificates; let i = index"
+              [content]="certificate"
+              (onChange)="approveEvents.certificates($event, i)"
+            ></app-approval-image>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-card-content>
+</mat-card>

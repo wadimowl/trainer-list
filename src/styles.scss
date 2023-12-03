@@ -1,0 +1,55 @@
+@use 'styles/constants' as constants;
+
+html, body {
+  height: 100%;
+  font-size: constants.$ROOT_FONT_SIZE !important;
+
+  @include constants.mobile-media-query() {
+    font-size: 8px !important;
+  }
+
+  @include constants.width-less-than(constants.$MOBILE_DIMENSION / 2) {
+    font-size: 6px !important;
+  }
+}
+
+@font-face {
+  font-family: 'San Francisco Light';
+  src: url('assets/fonts/SFUIText-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco Regular';
+  src: url('assets/fonts/SFUIText-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: 'San Francisco Regular', 'Helvetica Neue', sans-serif;
+  background-color: constants.$COLOR_BACKGROUND_MAIN;
+  color: whitesmoke;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 50%;
+  background-repeat: repeat;
+  z-index: -1;
+  background-image: url(assets/images/tiny-squares.png);
+}
+
+.backdrop:after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(constants.$COLOR_BACKGROUND_MAIN, 0.85);
+}

@@ -1,0 +1,53 @@
+@import '../../../../../styles/styles-theme';
+
+$border-width: 0.2rem;
+
+mat-card {
+  padding: 0;
+  background: rgba(0, 0, 0, .2);
+
+  .image-block {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 140px;
+    cursor: pointer;
+
+    mat-icon {
+      z-index: 0;
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+
+    .status {
+      position: absolute;
+    }
+
+    img {
+      max-height: 20rem;
+      border-radius: 0.5rem;
+      border: $border-width solid transparent;
+
+      &.attention-border {
+        border: $border-width solid $primary-color;
+      }
+    }
+  }
+
+  .mat-card-image {
+    max-width: calc(100% - #{$border-width} * 2);
+    margin: 0;
+  }
+
+  > .mat-card-actions {
+    margin: 0;
+  }
+}
+
+.mat-flat-button {
+  padding: 0 0.8rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}

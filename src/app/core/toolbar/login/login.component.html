@@ -1,0 +1,18 @@
+<h2 mat-dialog-title class="title">Login form</h2>
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <app-spinner *ngIf="processing$ | async"></app-spinner>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="login" required>
+      <mat-error app-control-error></mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error app-control-error></mat-error>
+    </mat-form-field>
+    <button type="submit" [disabled]="form.invalid && form.touched" mat-raised-button color="primary">Login</button>
+    <button type="button" (click)="loginAsAdmin()" mat-raised-button color="primary">Login as test admin</button>
+  </form>
+</div>

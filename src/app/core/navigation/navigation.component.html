@@ -1,0 +1,16 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     *ngFor="let link of linkList; let index = index"
+     [routerLink]="link.route"
+     routerLinkActive
+     #rla="routerLinkActive"
+     [active]="rla.isActive"
+  >
+    <span>{{link.title}}</span>
+    <mat-spinner
+      *ngIf="link.processing$ | async"
+      color="primary"
+      diameter="20"></mat-spinner
+    >
+  </a>
+</nav>

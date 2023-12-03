@@ -1,0 +1,36 @@
+//@use 'styles-theme' as theme;
+
+// BACKGROUND
+$COLOR_BACKGROUND_MAIN: #2e2f40;
+$COLOR_BACKGROUND_SECONDARY: #3a3b50;
+$COLOR_FOOTER: rgba(27, 28, 38, .3);
+
+//$MATERIAL_PRIMARY_COLOR: mat-color(theme.$md-green, default);
+
+// TEXT
+$COLOR_TEXT_MAIN: whitesmoke;
+$COLOR_TEXT_SECONDARY: #1b1c26;
+$COLOR_TEXT_BUTTON: #c0f3e3;
+
+$COLOR_DIVIDER: #333546;
+
+$MOBILE_DIMENSION: 640px;
+$ROOT_FONT_SIZE: 10px;
+
+@mixin mobile-media-query() {
+  @media (max-width: $MOBILE_DIMENSION - 1px) {
+    @content;
+  }
+}
+
+@mixin width-less-than($size) {
+  @media (max-width: calc($size - 1px)) {
+    @content;
+  }
+}
+
+@mixin width-less-than-root-rem($size) {
+  @include width-less-than(calc($ROOT_FONT_SIZE * $size - 1px)) {
+    @content;
+  }
+}

@@ -1,0 +1,220 @@
+@use "../node_modules/@angular/material/index" as mat;
+@use 'styles/constants' as const;
+
+@include mat.core();
+
+$grey: (
+  50 : #e8eaeb,
+  100 : #c5c9cd,
+  200 : #9fa6ac,
+  300 : #78828b,
+  400 : #5b6772,
+  500 : #3e4c59,
+  600 : #384551,
+  700 : #303c48,
+  800 : #28333e,
+  900 : #1b242e,
+  A100 : #74b1ff,
+  A200 : #4194ff,
+  A400 : #0e77ff,
+  A700 : #006af3,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$grey-accent: (
+  50 : #eceeef,
+  100 : #d0d4d8,
+  200 : #b0b7be,
+  300 : #909aa3,
+  400 : #798490,
+  500 : #616e7c,
+  600 : #596674,
+  700 : #4f5b69,
+  800 : #45515f,
+  900 : #333f4c,
+  A100 : #9ecbff,
+  A200 : #6bafff,
+  A400 : #3893ff,
+  A700 : #1f85ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$warn: (
+  50 : #ffece9,
+  100 : #ffd0c8,
+  200 : #ffb1a3,
+  300 : #ff927e,
+  400 : #ff7a63,
+  500 : #ff6347,
+  600 : #ff5b40,
+  700 : #ff5137,
+  800 : #ff472f,
+  900 : #ff3520,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffd3cf,
+  A700 : #ffbcb6,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-dark: (
+  50 : #eceeef,
+  100 : #d0d4d8,
+  200 : #b0b7be,
+  300 : #909aa3,
+  400 : #798490,
+  500 : #616e7c,
+  600 : #596674,
+  700 : #4f5b69,
+  800 : #45515f,
+  900 : #333f4c,
+  A100 : #9ecbff,
+  A200 : #6bafff,
+  A400 : #3893ff,
+  A700 : #1f85ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$md-green: (
+  50 : #e1f9f4,
+  100 : #b5f0e3,
+  200 : #84e7d0,
+  300 : #52ddbd,
+  400 : #2dd5af,
+  500 : #08cea1,
+  600 : #07c999,
+  700 : #06c28f,
+  800 : #04bc85,
+  900 : #02b074,
+  A100 : #dafff0,
+  A200 : #a7ffdc,
+  A400 : #74ffc8,
+  A700 : #5affbe,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$color: (
+  primary: mat.define-palette($md-green),
+  accent: mat.define-palette($md-dark, 500),
+  warn: mat.define-palette($warn, 300),
+);
+
+@font-face {
+  font-family: 'San Francisco Light';
+  src: url('assets/fonts/SFUIText-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$my-theme: mat.define-dark-theme((
+  color: $color,
+));
+$local-color: map-get($my-theme, color);
+
+@debug map-get($my-theme, foreground);
+
+$local-color: map-merge($local-color, (background: map-merge(map-get($local-color, background),
+  (app-bar: const.$COLOR_FOOTER, dialog: const.$COLOR_BACKGROUND_SECONDARY, card: const.$COLOR_BACKGROUND_MAIN)
+)));
+
+$my-theme: map-merge($my-theme, (color: $local-color));
+
+
+$typo: mat.define-typography-config(
+  $font-family: 'San Francisco Regular',
+);
+
+@include mat.all-component-themes($my-theme);
+@include mat.all-component-typographies($typo);
+
+.mat-raised-button,
+.mat-flat-button {
+  border-radius: 0 !important;
+}
+
+.mat-button-base {
+  font-weight: 400;
+}
+
+.mat-dialog-container {
+  border-radius: 0 !important;
+}
+
+.mat-button-base.mat-primary, .mat-button-base.mat-warn {
+  color: rgb(245, 245, 245);
+}

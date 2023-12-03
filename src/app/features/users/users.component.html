@@ -1,0 +1,9 @@
+<app-users-list
+  *ngIf="!!(usersFacade.users$ | async)"
+  [users]="(usersFacade.users$ | async)!"
+  [params]="(usersFacade.usersParams$ | async)!"
+  [load]="!!(usersFacade.usersLoading$ | async)"
+  (paginationChange)="paginationChange($event)"
+  (roleChange)="roleSortingChange($event)"
+  (userSelect)="userSelect($event)"
+></app-users-list>

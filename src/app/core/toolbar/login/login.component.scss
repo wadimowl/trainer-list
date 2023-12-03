@@ -1,0 +1,25 @@
+@use '../../../../styles/constants' as const;
+
+:host {
+  font-size: 1.6rem;
+}
+
+.mat-dialog-content {
+  width: 50rem;
+  @include const.width-less-than-root-rem(70) {
+    width: 100%;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    > *:not(app-spinner) + * {
+      margin-top: 0.5rem;
+    }
+
+    > button + button {
+      margin-top: 1.5rem;
+    }
+  }
+}
